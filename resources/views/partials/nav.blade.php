@@ -10,8 +10,17 @@
                 <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item {{ Request::is('/typing') ? 'active' : null }}">
-                <a class="nav-link" href="/typing">Typing Game</a>
+                <a class="nav-link" href="/pokemon/typing-game/">Pokemon Typing Game</a>
             </li>
+
+            @guest
+            <li class="nav-item {{ Request::is('/login') ? 'active' : null }}">
+                <a class="nav-link" href="/login">Log In</a>
+            </li>
+            <li class="nav-item {{ Request::is('/register') ? 'active' : null }}">
+                <a class="nav-link" href="/register">Register</a>
+            </li>
+            @endguest
 
             @auth
             <li class="nav-item dropdown">

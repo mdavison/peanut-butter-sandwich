@@ -26,4 +26,42 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * The roles that belong to the user
+     */
+    public function roles()
+    {
+        return $this->belongsToMany('App\Role');
+    }
+
+    /**
+     * The pokemon that belong to the user
+     */
+    public function pokemon()
+    {
+        return $this->belongsToMany('App\Pokemon');
+    }
+
+    public function hasRole($role)
+    {
+        foreach ($this->roles as $item) {
+            if ($item->name == $role) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public function hasPokemon($pokemonID)
+    {
+        foreach ($this->pokemon as $pokemon) {
+            if ($pokemon->id == $pokemonID) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

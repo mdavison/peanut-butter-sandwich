@@ -20,20 +20,11 @@ Route::get('/', function () {
 });
 
 // Pages.Words
-Route::get('/typing', 'Pages\WordsController@index');
-Route::get('/typing/pokemon/{word}', 'Pages\WordsController@show');
+Route::get('/pokemon/typing-game', 'Pages\PokemonTypingGameController@index');
+Route::get('/pokemon/typing-game/{pokemonIndex}', 'Pages\PokemonTypingGameController@show');
 
 // Admin
 Route::get('/admin/', 'Admin\AdminController@index');
-
-// Admin.Words
-//Route::get('/admin/words/', 'Admin\WordsController@index');
-//Route::get('/admin/words/create', 'Admin\WordsController@create');
-//Route::post('/admin/words', 'Admin\WordsController@store');
-//Route::get('/admin/words/{word}', 'Admin\WordsController@show');
-//Route::get('/admin/words/{word}/edit', 'Admin\WordsController@edit');
-Route::resource('admin/words', 'Admin\WordsController');
-Route::get('/admin/words/{word}/delete', 'Admin\WordsController@delete');
 
 Auth::routes();
 
@@ -46,3 +37,4 @@ Route::get('register/verify/{confirmationCode}', [
 ]);
 
 Route::get('/pokemon', 'PokemonController@index');
+Route::post('/pokemon/user', 'PokemonController@storeUser');

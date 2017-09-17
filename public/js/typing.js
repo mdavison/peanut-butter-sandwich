@@ -1,13 +1,14 @@
 $(function(){
     var pokemonImage = $("#pokemon").attr("data-pokemon-to-appear");
-    var nextWordID = $("#next-word").attr("data-next-word");
+    var nextPokemonIndex = $("#next-word").attr("data-next-word");
 
     // Auto focus on the input
     $("#word-input").focus();
 
     // Prevent the page from reloading if the enter/return key is pressed
     $("form").submit(function(e){
-        e.preventDefault();
+        // TODO: put this back - temporarily disabled for development
+        //e.preventDefault();
     });
 
     $("#word-input").keyup(function(e) {
@@ -21,7 +22,6 @@ $(function(){
     });
 
     $("#next-word").click(function(){
-        console.log('clicked');
-        window.location = "/typing/pokemon/" + nextWordID;
+        window.location = "/pokemon/typing-game/" + nextPokemonIndex;
     });
 });
