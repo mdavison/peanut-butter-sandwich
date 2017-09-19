@@ -19,6 +19,11 @@ class PokemonController extends Controller
         return Pokemon::get(['index', 'name', 'image']);
     }
 
+    /**
+     * This method is used via AJAX
+     *
+     * @return string
+     */
     public function storeUser()
     {
         $this->validate(request(), [
@@ -28,7 +33,7 @@ class PokemonController extends Controller
 
         // Make sure the user is the currently logged in user
         if (Auth::user()->id != request('user')) {
-            return back();
+            return 'User ID does not match currently logged in user';
         }
 
         $pokemon = Pokemon::find(request('pokemon'));
@@ -36,13 +41,13 @@ class PokemonController extends Controller
 
         // Find out if user already has this pokemon
         if ($user->hasPokemon($pokemon->id)) {
-            return back();
+            return 'User already has this Pokemon: ID='. $pokemon->id . ' index=' . $pokemon->index;
         }
 
         if (!empty($pokemon) && !empty($user)) {
             $pokemon->users()->save($user);
         }
 
-        return back();
+        return '';
     }
 }

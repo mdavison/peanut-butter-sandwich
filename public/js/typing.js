@@ -1,14 +1,14 @@
 $(function(){
     var pokemonImage = $("#pokemon").attr("data-pokemon-to-appear");
     var nextPokemonIndex = $("#next-word").attr("data-next-word");
+    var userID = $("#user-id").attr("value");
 
     // Auto focus on the input
     $("#word-input").focus();
 
     // Prevent the page from reloading if the enter/return key is pressed
     $("form").submit(function(e){
-        // TODO: put this back - temporarily disabled for development
-        //e.preventDefault();
+        e.preventDefault();
     });
 
     $("#word-input").keyup(function(e) {
@@ -16,6 +16,15 @@ $(function(){
             $("#pokemon").attr("src", "/img/pokemon/" + pokemonImage);
 
             $("#next-word").removeClass("invisible");
+
+            // If user is logged in, add Pokemon to their collection
+            if (userID !== null || userID !== undefined) {
+                var jqxhr = $.post("/pokemon/user", $("#add-pokemon").serialize(), function (data) {
+                    if (data != '') {
+                        console.log("Attempted to add to Pokemon collection: " + data);
+                    }
+                });
+            }
         } else {
             $("#pokemon").attr("src", "/img/pokemon/pokeball.png")
         }

@@ -19,11 +19,11 @@
                 </form>
                 <button type="button" class="btn btn-success invisible" id="next-word" data-next-word="{{ $pokemon->nextPokemonIndex($pokemon->index) }}">Next &gt;</button>
 
-                <form action="/pokemon/user" method="post">
+                <form action="/pokemon/user" method="post" id="add-pokemon" class="invisible">
                     <div class="form-group">
                         {{ csrf_field() }}
                         <input type="hidden" name="pokemon" value="{{ $pokemon->id }}">
-                        <input type="hidden" name="user" value="{{ Auth::user() ? Auth::user()->id : '' }}">
+                        <input type="hidden" name="user" id="user-id" value="{{ Auth::user() ? Auth::user()->id : '' }}">
                         <button type="submit" class="btn btn-primary" id="add">Add to Collection</button>
                     </div>
                 </form>
