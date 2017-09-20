@@ -38,3 +38,5 @@ Route::get('register/verify/{confirmationCode}', [
 
 Route::get('/pokemon', 'PokemonController@index');
 Route::post('/pokemon/user', 'PokemonController@storeUser');
+
+Route::get('/user/{user}/pokemon', 'UsersController@showPokemon');

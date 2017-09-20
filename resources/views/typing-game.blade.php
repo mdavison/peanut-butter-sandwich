@@ -8,7 +8,7 @@
     <div class="container word-container">
         <div class="row">
             <div class="col">
-                <img id="pokemon" src="/img/pokemon/pokeball.png" data-pokemon-to-appear="{{ $pokemon->image }}">
+                <img id="pokemon" src="/img/pokemon/pokeball.png" data-pokemon-to-appear="{{ $pokemon->image }}" height="475" width="475">
             </div>
             <div class="col">
                 <h1 id="word-to-type">{{ ucfirst($pokemon->name) }}</h1>
@@ -17,7 +17,12 @@
                         <input type="text" class="form-control" id="word-input" placeholder="Type {{ ucfirst($pokemon->name) }}">
                     </div>
                 </form>
-                <button type="button" class="btn btn-success invisible" id="next-word" data-next-word="{{ $pokemon->nextPokemonIndex($pokemon->index) }}">Next &gt;</button>
+
+                <button type="button" class="btn btn-success invisible" id="next-word" data-next-word="{{ $pokemon->nextPokemonIndex($pokemon->index) }}">Next <span class="oi oi-arrow-circle-right" title="icon circle right" aria-hidden="true"></span></button>
+
+                <div class="alert alert-success invisible" role="alert" id="add-to-collection-message">
+                    Added {{ ucfirst($pokemon->name) }} to your collection!
+                </div>
 
                 <form action="/pokemon/user" method="post" id="add-pokemon" class="invisible">
                     <div class="form-group">

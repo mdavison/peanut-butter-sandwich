@@ -1,4 +1,5 @@
 $(function(){
+    var currentPokemonWord = $("#word-to-type").text();
     var pokemonImage = $("#pokemon").attr("data-pokemon-to-appear");
     var nextPokemonIndex = $("#next-word").attr("data-next-word");
     var userID = $("#user-id").attr("value");
@@ -22,6 +23,9 @@ $(function(){
                 var jqxhr = $.post("/pokemon/user", $("#add-pokemon").serialize(), function (data) {
                     if (data != '') {
                         console.log("Attempted to add to Pokemon collection: " + data);
+                    } else {
+                        console.log("Added " + currentPokemonWord + " to your collection!");
+                        $("#add-to-collection-message").removeClass("invisible");
                     }
                 });
             }

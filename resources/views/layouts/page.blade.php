@@ -7,9 +7,12 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-    <link rel="stylesheet" href="/css/page.css">
+
+    <!-- Open Ionic CSS -->
+    <link href="/css/open-iconic-bootstrap.css" rel="stylesheet">
 
     <!-- Page-specific CSS -->
+    <link rel="stylesheet" href="/css/page.css">
     @yield('styles')
 
     <title>Peanut Butter Sandwich</title>
