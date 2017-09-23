@@ -1,9 +1,5 @@
 @extends('layouts.page')
 
-@section('styles')
-    <link rel="stylesheet" href="/css/typing.css">
-@endsection
-
 @section('content')
     <div class="container word-container">
         <div class="row">

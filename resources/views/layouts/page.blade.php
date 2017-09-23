@@ -23,19 +23,7 @@
 
 <div class="container">
 
-    <div class="container">
-        @if (session('message'))
-            <div class="alert alert-info" role="alert">
-                {{ session('status') }}
-            </div>
-        @endif
-
-        @if (session('errors'))
-            <div class="alert alert-danger" role="alert">
-                {{ session('status') }}
-            </div>
-        @endif
-    </div>
+    @include('partials.flash')
 
     @yield('content')
 
