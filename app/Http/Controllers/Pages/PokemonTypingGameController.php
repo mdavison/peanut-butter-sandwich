@@ -10,14 +10,15 @@ class PokemonTypingGameController extends Controller
 {
     public function index()
     {
+        $pokemon = Pokemon::where('index', 1)->first();
         $user = \Auth::user();
 
         if ($user) {
-            $pokemon = $user->pokemon->sortBy('index')->last();
-            $nextPokemonIndex = Pokemon::nextPokemonIndex($pokemon->index, $user);
-            $pokemon = Pokemon::where('index', $nextPokemonIndex)->first();
-        } else {
-            $pokemon = Pokemon::where('index', 1)->first();
+            $usersPokemon = $user->pokemon->sortBy('index')->last();
+            if ($usersPokemon) {
+                $nextPokemonIndex = Pokemon::nextPokemonIndex($usersPokemon->index, $user);
+                $pokemon = Pokemon::where('index', $nextPokemonIndex)->first();
+            }
         }
 
         return view('typing-game', compact('pokemon'));
