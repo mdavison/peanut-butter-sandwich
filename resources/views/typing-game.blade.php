@@ -2,6 +2,9 @@
 
 @section('content')
     <div class="container word-container">
+        <h2>Pokemon Typing Game</h2>
+        <p>Type the name of the Pokemon to catch it. When you type it correctly it will automatically get added to your collection (as long as you are logged in).</p>
+        <hr>
         <div class="row">
             <div class="col">
                 <img id="pokemon" src="/img/pokemon/pokeball.png" data-pokemon-to-appear="{{ $pokemon->image }}" height="475" width="475">
@@ -14,7 +17,7 @@
                     </div>
                 </form>
 
-                <button type="button" class="btn btn-success invisible" id="next-word" data-next-word="{{ $pokemon->nextPokemonIndex($pokemon->index) }}">Next <span class="oi oi-arrow-circle-right" title="icon circle right" aria-hidden="true"></span></button>
+                <button type="button" class="btn btn-success invisible" id="next-word" data-next-word="{{ $pokemon->nextPokemonIndex($pokemon->index, Auth::user()) }}">Next <span class="oi oi-arrow-circle-right" title="icon circle right" aria-hidden="true"></span></button>
 
                 <div class="alert alert-success invisible" role="alert" id="add-to-collection-message">
                     Added {{ ucfirst($pokemon->name) }} to your collection!

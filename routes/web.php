@@ -40,3 +40,8 @@ Route::get('/pokemon', 'PokemonController@index');
 Route::post('/pokemon/user', 'PokemonController@storeUser');
 
 Route::get('/user/{user}/pokemon', 'UsersController@showPokemon');
+
+// Let's Encrypt
+Route::get('/.well-known/acme-challenge/{id}', function(){
+    return view('index');
+});
