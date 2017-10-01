@@ -23,6 +23,7 @@ class Pokemon extends Model
 
     /**
      * @param int $currentPokemonIndex
+     * @param User $user
      * @return int
      */
     public static function nextPokemonIndex($currentPokemonIndex, User $user = null)
@@ -45,5 +46,75 @@ class Pokemon extends Model
 
         // Fall back to just returning the first index
         return static::orderBy('index', 'asc')->pluck('index')->first();
+    }
+
+    /**
+     * Get the next Pokemon in order by index that is not in the User's collection
+     * @param User $user
+     * @return Pokemon
+     */
+    public static function nextPokemonNotInCollection(User $user)
+    {
+        $pokemon = static::orderBy('index', 'asc')->first();
+
+        while ($user->pokemon->contains('index', $pokemon->index)) {
+            // If it's in the collection, find the next one in order by index
+            $pokemon = Pokemon::where('index', '>', $pokemon->index)->orderBy('index', 'asc')->first();
+        }
+
+        return $pokemon;
+    }
+
+    /**
+     * Get a random Pokemon not in a User's collection
+     *
+     * @param User $user
+     * @return Pokemon
+     */
+    public static function randomPokemonNotInCollection(User $user)
+    {
+        // Get a random pokemon
+        $pokemon = static::random();
+
+        while ($user->pokemon->contains('index', $pokemon->index)) {
+            // If it's in the user's collection, get a different random one
+            $pokemon = Pokemon::random();
+        }
+
+        return $pokemon;
+    }
+
+    /**
+     * Get a random Pokemon from a User's collection
+     *
+     * @param User $user
+     * @return Pokemon
+     */
+    public static function randomPokemonInCollection(User $user)
+    {
+        // Get a random pokemon
+        $pokemon = static::random();
+
+        while (!$user->pokemon->contains('index', $pokemon->index)) {
+            // If it's NOT in the collection, get another random one
+            $pokemon = Pokemon::random();
+        }
+
+        return $pokemon;
+    }
+
+    /**
+     * Get a random pokemon
+     *
+     * @return Pokemon
+     */
+    public static function random()
+    {
+        $firstPokemonByIndex = Pokemon::orderBy('id', 'asc')->first();
+        $lastPokemonByIndex = Pokemon::orderBy('id', 'desc')->first();
+
+        $randomInt = rand($firstPokemonByIndex->id, $lastPokemonByIndex->id);
+
+        return static::find($randomInt);
     }
 }

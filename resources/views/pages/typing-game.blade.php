@@ -1,7 +1,7 @@
 @extends('layouts.page')
 
 @section('content')
-    <div class="container word-container">
+    <div class="container">
         <h2>Pokemon Typing Game</h2>
         <p>Type the name of the Pokemon to catch it. When you type it correctly it will automatically get added to your collection (as long as you are logged in).</p>
         <hr>
@@ -17,7 +17,9 @@
                     </div>
                 </form>
 
-                <button type="button" class="btn btn-success invisible" id="next-word" data-next-word="{{ $pokemon->nextPokemonIndex($pokemon->index, Auth::user()) }}">Next <span class="oi oi-arrow-circle-right" title="icon circle right" aria-hidden="true"></span></button>
+                <div class="form-group">
+                    <button type="button" class="btn btn-success invisible" id="next-word" data-next-word="{{ $pokemon->nextPokemonIndex($pokemon->index, Auth::user()) }}">Next <span class="oi oi-arrow-circle-right" title="icon circle right" aria-hidden="true"></span></button>
+                </div>
 
                 <div class="alert alert-success invisible" role="alert" id="add-to-collection-message">
                     Added {{ ucfirst($pokemon->name) }} to your collection!
@@ -28,7 +30,6 @@
                         {{ csrf_field() }}
                         <input type="hidden" name="pokemon" value="{{ $pokemon->id }}">
                         <input type="hidden" name="user" id="user-id" value="{{ Auth::user() ? Auth::user()->id : '' }}">
-                        <button type="submit" class="btn btn-primary" id="add">Add to Collection</button>
                     </div>
                 </form>
 

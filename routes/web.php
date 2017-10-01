@@ -19,9 +19,10 @@ Route::get('/', function () {
     return view('index');
 });
 
-// Pages.Words
 Route::get('/pokemon/typing-game', 'Pages\PokemonTypingGameController@index');
 Route::get('/pokemon/typing-game/{pokemonIndex}', 'Pages\PokemonTypingGameController@show');
+Route::get('/pokemon/math-game', 'Pages\PokemonMathGameController@index');
+Route::get('/pokemon/math-game/{equation}', 'Pages\PokemonMathGameController@show');
 
 // Admin
 Route::get('/admin/', 'Admin\AdminController@index');
@@ -38,5 +39,6 @@ Route::get('register/verify/{confirmationCode}', [
 
 Route::get('/pokemon', 'PokemonController@index');
 Route::post('/pokemon/user', 'PokemonController@storeUser');
+Route::delete('/pokemon/user', 'PokemonController@removeUser');
 
 Route::get('/user/{user}/pokemon', 'UsersController@showPokemon');

@@ -50,4 +50,38 @@ class PokemonController extends Controller
 
         return '';
     }
+
+    /**
+     * This method is used via AJAX
+     *
+     * @return string
+     */
+    public function removeUser()
+    {
+        $this->validate(request(), [
+            'remove-pokemon' => 'required',
+            'user' => 'required'
+        ]);
+
+        // Make sure the user is the currently logged in user
+        if (Auth::user()->id != request('user')) {
+            return 'User ID does not match currently logged in user';
+        }
+
+        $pokemon = Pokemon::find(request('remove-pokemon'));
+        $user = User::find(request('user'));
+
+        if (empty($pokemon)) {
+            return 'Unable to find Pokemon: ' . request('remove-pokemon');
+        }
+
+        if (empty($user)) {
+            return 'Unable to find User: ' . request('user');
+        }
+
+        // Remove this pokemon from this user
+        $pokemon->users()->detach($user->id);
+
+        return '';
+    }
 }

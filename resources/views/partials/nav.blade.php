@@ -9,8 +9,11 @@
             <li class="nav-item {{ Request::is('/') ? 'active' : null }}">
                 <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item {{ Request::is('/typing') ? 'active' : null }}">
+            <li class="nav-item {{ Request::is('/typing-game') ? 'active' : null }}">
                 <a class="nav-link" href="/pokemon/typing-game/">Pokemon Typing Game</a>
+            </li>
+            <li class="nav-item {{ Request::is('/math-game') ? 'active' : null }}">
+                <a class="nav-link" href="/pokemon/math-game/">Pokemon Math Game</a>
             </li>
 
             @guest

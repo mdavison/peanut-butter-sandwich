@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Pages;
 
 use App\Pokemon;
+use Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -11,17 +12,13 @@ class PokemonTypingGameController extends Controller
     public function index()
     {
         $pokemon = Pokemon::where('index', 1)->first();
-        $user = \Auth::user();
+        $user = Auth::user();
 
         if ($user) {
-            $usersPokemon = $user->pokemon->sortBy('index')->last();
-            if ($usersPokemon) {
-                $nextPokemonIndex = Pokemon::nextPokemonIndex($usersPokemon->index, $user);
-                $pokemon = Pokemon::where('index', $nextPokemonIndex)->first();
-            }
+            $pokemon = Pokemon::nextPokemonNotInCollection($user);
         }
 
-        return view('typing-game', compact('pokemon'));
+        return view('pages.typing-game', compact('pokemon'));
     }
 
     public function show($pokemonIndex)
@@ -29,6 +26,6 @@ class PokemonTypingGameController extends Controller
         // Get pokemon by index
         $pokemon = Pokemon::where('index', $pokemonIndex)->first();
 
-        return view('typing-game', compact('pokemon'));
+        return view('pages.typing-game', compact('pokemon'));
     }
 }

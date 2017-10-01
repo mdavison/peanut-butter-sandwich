@@ -1,3 +1,7 @@
 body {
     padding-top: 7.5rem;
 }
+.btn-huge {
+    padding: 3rem;
+    font-size: 3rem;
+}

@@ -19,7 +19,7 @@ $(function(){
             $("#next-word").removeClass("invisible");
 
             // If user is logged in, add Pokemon to their collection
-            if (userID !== null || userID !== undefined) {
+            if (userID !== '' && userID !== null && userID !== undefined) {
                 var jqxhr = $.post("/pokemon/user", $("#add-pokemon").serialize(), function (data) {
                     if (data != '') {
                         console.log("Attempted to add to Pokemon collection: " + data);
@@ -28,6 +28,8 @@ $(function(){
                         $("#add-to-collection-message").removeClass("invisible");
                     }
                 });
+            } else {
+                // TODO: add message that not logged in
             }
         } else {
             $("#pokemon").attr("src", "/img/pokemon/pokeball.png")
