@@ -8,7 +8,7 @@
         <div class="row">
             <div class="col">
                 <img id="pokemon" src="/img/pokemon/pokeball.png" data-pokemon-to-appear="{{ $pokemon->image }}" data-pokemon-name="{{ $pokemon->name }}" height="475" width="475">
-                <span id="pokemon-to-lose" data-pokemon-to-lose-image="{{ $pokemonToLose->image }}" data-pokemon-to-lose-name="{{ $pokemonToLose->name }}"></span>
+                <span id="pokemon-to-lose" data-pokemon-to-lose-image="{{ $pokemonToLoseImage }}" data-pokemon-to-lose-name="{{ $pokemonToLoseName }}"></span>
             </div>
             <div class="col">
                 <h2>{{ $equation->question }} <span id="answer" data-answer="{{ $equation->answer }}"></span></h2>
@@ -41,7 +41,7 @@
                     <div class="form-group">
                         {{ csrf_field() }}
                         {{ method_field('DELETE') }}
-                        <input type="hidden" name="remove-pokemon" value="{{ $pokemonToLose->id }}">
+                        <input type="hidden" name="remove-pokemon" id="pokemon-to-lose-id" value="{{ $pokemonToLoseID }}">
                         <input type="hidden" name="user" id="user-id" value="{{ Auth::user() ? Auth::user()->id : '' }}">
                     </div>
                 </form>

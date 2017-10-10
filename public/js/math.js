@@ -8,6 +8,7 @@ $(function(){
     var pokemonToLoseImage = $("#pokemon-to-lose").attr("data-pokemon-to-lose-image");
     var nextEquationID = $("#next-equation").attr("data-next-equation");
     var haveUser = haveUserID();
+    var havePokemonToLose = havePokemonIDToLose();
 
     // Prevent the page from reloading if the enter/return key is pressed
     $("form").submit(function(e){
@@ -52,7 +53,7 @@ $(function(){
             $(".alert").addClass("alert-danger");
 
             // Only do this if user is logged in
-            if (haveUser) {
+            if (haveUser && havePokemonToLose) {
                 $("#pokemon").fadeTo(500, 0.25, function () {
                     $("#pokemon").attr("src", "/img/pokemon/" + pokemonToLoseImage);
                 });
@@ -83,6 +84,11 @@ $(function(){
     function haveUserID() {
         var userID = $("#user-id").attr("value");
         return userID !== '' && userID !== null && userID !== undefined;
+    }
+
+    function havePokemonIDToLose() {
+        var pokemonToLoseID = $("#pokemon-to-lose-id").attr("value");
+        return pokemonToLoseID !== '' && pokemonToLoseID !== null && pokemonToLoseID !== undefined;
     }
 
 });

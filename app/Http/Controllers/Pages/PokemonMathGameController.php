@@ -15,30 +15,43 @@ class PokemonMathGameController extends Controller
         $equation = Equation::first();
         $pokemon = Pokemon::first();
         $user = Auth::user();
-        $pokemonToLose = $pokemon;
+
+        $pokemonToLoseImage = '';
+        $pokemonToLoseName = '';
+        $pokemonToLoseID = '';
 
         if ($user) {
             $pokemon = Pokemon::nextPokemonNotInCollection($user);
             $pokemonToLose = Pokemon::randomPokemonInCollection($user);
+
+            $pokemonToLoseImage = $pokemonToLose ? $pokemonToLose->image : '';
+            $pokemonToLoseName = $pokemonToLose ? $pokemonToLose->name : '';
+            $pokemonToLoseID = $pokemonToLose ? $pokemonToLose->id : '';
         }
 
-        return view('pages.math-game', compact('equation', 'pokemon', 'pokemonToLose'));
+        return view('pages.math-game', compact('equation', 'pokemon', 'pokemonToLoseImage', 'pokemonToLoseName', 'pokemonToLoseID'));
     }
 
     public function show(Equation $equation)
     {
         $pokemon = Pokemon::random();
         $user = Auth::user();
-        $pokemonToLose = $pokemon;
+        $pokemonToLoseImage = '';
+        $pokemonToLoseName = '';
+        $pokemonToLoseID = '';
 
         if ($user) {
             $usersPokemon = $user->pokemon->sortBy('index')->last();
             if ($usersPokemon) {
                 $pokemon = Pokemon::randomPokemonNotInCollection($user);
                 $pokemonToLose = Pokemon::randomPokemonInCollection($user);
+
+                $pokemonToLoseImage = $pokemonToLose ? $pokemonToLose->image : '';
+                $pokemonToLoseName = $pokemonToLose ? $pokemonToLose->name : '';
+                $pokemonToLoseID = $pokemonToLose ? $pokemonToLose->id : '';
             }
         }
 
-        return view('pages.math-game', compact('equation', 'pokemon', 'pokemonToLose'));
+        return view('pages.math-game', compact('equation', 'pokemon', 'pokemonToLoseImage', 'pokemonToLoseName', 'pokemonToLoseID'));
     }
 }

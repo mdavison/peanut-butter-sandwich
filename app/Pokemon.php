@@ -57,6 +57,11 @@ class Pokemon extends Model
     {
         $pokemon = static::orderBy('index', 'asc')->first();
 
+        // If the user doesn't have any pokemon yet, just return the first one
+        if (count($user->pokemon) == 0) {
+            return $pokemon;
+        }
+
         while ($user->pokemon->contains('index', $pokemon->index)) {
             // If it's in the collection, find the next one in order by index
             $pokemon = Pokemon::where('index', '>', $pokemon->index)->orderBy('index', 'asc')->first();
@@ -76,6 +81,11 @@ class Pokemon extends Model
         // Get a random pokemon
         $pokemon = static::random();
 
+        // If the user doesn't have any pokemon yet, just return the random one
+        if (count($user->pokemon) == 0) {
+            return $pokemon;
+        }
+
         while ($user->pokemon->contains('index', $pokemon->index)) {
             // If it's in the user's collection, get a different random one
             $pokemon = Pokemon::random();
@@ -88,19 +98,11 @@ class Pokemon extends Model
      * Get a random Pokemon from a User's collection
      *
      * @param User $user
-     * @return Pokemon
+     * @return Pokemon|null
      */
     public static function randomPokemonInCollection(User $user)
     {
-        // Get a random pokemon
-        $pokemon = static::random();
-
-        while (!$user->pokemon->contains('index', $pokemon->index)) {
-            // If it's NOT in the collection, get another random one
-            $pokemon = Pokemon::random();
-        }
-
-        return $pokemon;
+        return count($user->pokemon) > 0 ? $user->pokemon->random() : null;
     }
 
     /**
