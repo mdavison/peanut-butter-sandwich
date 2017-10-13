@@ -41,4 +41,5 @@ Route::get('/pokemon', 'PokemonController@index');
 Route::post('/pokemon/user', 'PokemonController@storeUser');
 Route::delete('/pokemon/user', 'PokemonController@removeUser');
 
+// My Pokemon page
 Route::get('/user/{user}/pokemon', 'UsersController@showPokemon');

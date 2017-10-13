@@ -9,23 +9,42 @@
 
     <hr>
 
-    @if (!empty($pokemon))
+    <div class="container">
+
         <div class="row">
-        @foreach ($pokemon as $item)
-        <div class="col">
-            <div class="card" style="width: 475px;">
-                <img class="card-img-top" src="/img/pokemon/{{ $item->image }}" alt="Card image cap" height="475" width="475">
-                <div class="card-body">
-                    <h4 class="card-title">{{ ucfirst($item->name) }}</h4>
-                </div>
+            <div class="col-md-2 col-sm-1">
+                <p>Filter</p>
+
+                <p><a href="#" class="filter-show-all">Show All</a></p>
+
+                @foreach ($letters as $letter)
+                    <p><a href="#" class="filter-letter">{{ $letter }}</a></p>
+                @endforeach
             </div>
-        </div>
-        @endforeach
+
+            <div class="col">
+                @if (!empty($pokemon))
+                    <div class="row">
+                    @foreach ($pokemon as $item)
+                    <div class="col">
+                        <div class="card pokemon-card" id="{{ $item->name }}">
+                            <img class="card-img-top" src="/img/pokemon/thumbs/{{ $item->image }}" alt="Card image cap" height="100" width="100">
+                            <div class="card-body">
+                                <p class="card-title">{{ ucfirst($item->name) }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                    </div><!-- /.row -->
+                @endif
+            </div><!-- /.col -->
+
         </div><!-- /.row -->
-    @endif
+
+    </div><!-- /.container -->
 
 @endsection
 
 @section('scripts')
-
+    <script src="/js/my-pokemon.js"></script>
 @endsection

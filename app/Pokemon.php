@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
 
 class Pokemon extends Model
 {
@@ -118,5 +119,25 @@ class Pokemon extends Model
         $randomInt = rand($firstPokemonByIndex->id, $lastPokemonByIndex->id);
 
         return static::find($randomInt);
+    }
+
+    /**
+     * Return the first letters from a Collection of Pokemon (used in filtering the My Pokemon page)
+     *
+     * @param Collection $pokemon
+     * @return array
+     */
+    public static function firstLetters(Collection $pokemon)
+    {
+        $alphabetical = $pokemon->sortBy('name');
+        $firstLetters = [];
+
+        foreach ($alphabetical as $item) {
+            $firstLetters[] = ucfirst(substr($item->name, 0, 1));
+        }
+
+        $firstLetters = array_unique($firstLetters);
+
+        return $firstLetters;
     }
 }
