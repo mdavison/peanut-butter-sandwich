@@ -1,11 +1,25 @@
 body {
     padding-top: 7.5rem;
 }
+
+/**
+* Typing Game Page
+ */
+#word-to-type {
+    font-family: "Delius", "Times New Roman", Times, serif;
+}
+
+/**
+* Math Game Page
+ */
 .btn-huge {
     padding: 3rem;
     font-size: 3rem;
 }
 
+/**
+* My Pokemon Page
+ */
 .pokemon-card {
     width: 150px;
     margin-bottom: 15px;
