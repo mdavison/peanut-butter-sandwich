@@ -3,11 +3,9 @@ $(function(){
         // Prevent the default action on the link
         e.preventDefault();
 
-        $(this).show();
-
         // Show all the cards
         $(".pokemon-card").each(function(){
-            $(this).show();
+            $(this).parent().show();
         });
     });
 
@@ -36,9 +34,10 @@ $(function(){
             var inArray = $.inArray(thisID, filteredCardIDs);
 
             if (inArray === -1) {
-                $(this).hide();
+                // Grab the parent (column element) so there aren't empty columns floating around messing up the formatting
+                $(this).parent().hide();
             } else {
-                $(this).show();
+                $(this).parent().show();
             }
         });
     });
