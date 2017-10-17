@@ -3,6 +3,8 @@ body {
     padding-top: 3.5rem;
 }
 .jumbotron {
-    background-image: url("../img/peanut-butter-background.png");
-    background-position: right;
+    /*background-image: url("../img/peanut-butter-background.png");*/
+    /*background-position: right;*/
+    background-color: #2ab27b;
+    color: #ffffff;
 }

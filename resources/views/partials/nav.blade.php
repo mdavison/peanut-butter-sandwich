@@ -10,10 +10,10 @@
                 <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item {{ Request::is('/typing-game') ? 'active' : null }}">
-                <a class="nav-link" href="/pokemon/typing-game/">Pokemon Typing Game</a>
+                <a class="nav-link" href="/pokemon/typing-game/">Pok&eacute;mon Typing Game</a>
             </li>
             <li class="nav-item {{ Request::is('/math-game') ? 'active' : null }}">
-                <a class="nav-link" href="/pokemon/math-game/">Pokemon Math Game</a>
+                <a class="nav-link" href="/pokemon/math-game/">Pok&eacute;mon Math Game</a>
             </li>
 
             @guest
@@ -38,7 +38,7 @@
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         {{ csrf_field() }}
                     </form>
-                    <a class="dropdown-item" href="/user/{{ Auth::user()->id }}/pokemon">My Pokemon</a>
+                    <a class="dropdown-item" href="/user/{{ Auth::user()->id }}/pokemon">My Pok&eacute;mon</a>
                 </div>
             </li>
             @endauth

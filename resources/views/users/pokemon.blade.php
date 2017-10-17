@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <h1>My Pokemon</h1>
+    <h1>My Pok&eacute;mon</h1>
 
     <hr>
 

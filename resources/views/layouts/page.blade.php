@@ -32,7 +32,7 @@
 
     <hr>
 
-    <footer></footer>
+    @include('partials.footer')
 </div> <!-- /container -->
 
 <script src="{{ asset('js/app.js') }}"></script>

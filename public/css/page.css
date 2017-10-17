@@ -8,6 +8,9 @@ body {
 #word-to-type {
     font-family: "Delius", "Times New Roman", Times, serif;
 }
+#next-word {
+    cursor: pointer;
+}
 
 /**
 * Math Game Page
@@ -15,6 +18,7 @@ body {
 .btn-huge {
     padding: 3rem;
     font-size: 3rem;
+    cursor: pointer;
 }
 
 /**
