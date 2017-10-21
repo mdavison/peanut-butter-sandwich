@@ -16,6 +16,8 @@ class PokemonTypingGameController extends Controller
 
         if ($user) {
             $pokemon = Pokemon::nextPokemonNotInCollection($user);
+        } else {
+            request()->session()->flash('message', 'You are not logged in. In order to save any Pokémon you catch you will need to log in.');
         }
 
         return view('pages.typing-game', compact('pokemon'));
